@@ -1,0 +1,24 @@
+Running scheduled command: '/opt/cpanel/ea-php72/root/usr/bin/php' 'artisan' demo:cron > '/dev/null' 2>&1
+
+   Symfony\Component\Process\Exception\LogicException  : The Process class relies on proc_open, which is not available on your PHP installation.
+
+  at /home/otosru/public_html/taxi/vendor/symfony/process/Process.php:143
+    139|      */
+    140|     public function __construct($command, string $cwd = null, array $env = null, $input = null, ?float $timeout = 60)
+    141|     {
+    142|         if (!\function_exists('proc_open')) {
+  > 143|             throw new LogicException('The Process class relies on proc_open, which is not available on your PHP installation.');
+    144|         }
+    145| 
+    146|         if (!\is_array($command)) {
+    147|             @trigger_error(sprintf('Passing a command as string when creating a "%s" instance is deprecated since Symfony 4.2, pass it as an array of its arguments instead, or use the "Process::fromShellCommandline()" constructor if you need features provided by the shell.', __CLASS__), E_USER_DEPRECATED);
+
+  Exception trace:
+
+  1   Symfony\Component\Process\Process::__construct([], "/home/otosru/public_html/taxi")
+      /home/otosru/public_html/taxi/vendor/symfony/process/Process.php:195
+
+  2   Symfony\Component\Process\Process::fromShellCommandline("'/opt/cpanel/ea-php72/root/usr/bin/php' 'artisan' demo:cron > '/dev/null' 2>&1", "/home/otosru/public_html/taxi")
+      /home/otosru/public_html/taxi/vendor/laravel/framework/src/Illuminate/Console/Scheduling/Event.php:218
+
+  Please use the argument -v to see more details.
